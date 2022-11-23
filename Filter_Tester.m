@@ -1,21 +1,19 @@
-input = imread("Noisy_dataset/noise66.png");
+input = imread("Noisy_dataset/noise2.png");
 Inoise = im2double(input);
+output_avg = Avgfilter(Inoise,5,3);
+output_med = Medianfilter(Inoise,3,3,5);
+output_gaus = Gaussianfilter(Inoise,0.7);
+figure;
+subplot(2,2,1)
 imshow(Inoise);
 title("Speckled Image");
-
-output_avg = Avgfilter(Inoise,3,3);
-output_med = Medianfilter(Inoise,3,3,5);
-output_gaus = Gaussianfilter(Inoise,0.5);
-figure;
-subplot(1,1,1);
+subplot(2,2,2);
 imshow(output_avg);
 title("Avg Filter");
-figure;
-subplot(1,1,1);
+subplot(2,2,3);
 imshow(output_med);
 title("Med Filter");
-figure;
-subplot(1,1,1);
+subplot(2,2,4);
 imshow(output_gaus);
 title("Gaussian Filter");
 
