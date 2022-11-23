@@ -1,7 +1,7 @@
 close;
 clear;
 
-input = imread("Noisy_dataset/noise2.png");
+input = imread("Noisy_dataset/noise3.png");
 Inoise = im2double(input);
 I_hsv = rgb2hsv(input);
 
@@ -12,7 +12,7 @@ valval = 10*mean(mean(I_hsv(:,:,3))); % extracting hsv features of the image for
 fprintf("Hue : %d | Scale : %d | Value : %d",hueval,scaleval,valval);
 
 output_avg = Avgfilter(Inoise,5,3);
-output_med = Medianfilter(Inoise,3,3,5);
+output_med = Medianfilter(Inoise,5);
 output_gaus = Gaussianfilter(Inoise,0.7);
 
 figure;
@@ -36,9 +36,9 @@ function Avg_output = Avgfilter(img,kernel_h,kernel_w)
     
 end
 
-function med_output = Medianfilter(img,sizex,sizey,sizez)
+function med_output = Medianfilter(img,size_neigh)
 
-    med_output = medfilt3(img,[sizex,sizey,sizez]);
+    med_output = medfilt3(img,[3,3,size_neigh]);
 end
 
 function gaus_output = Gaussianfilter(img,sigma)
