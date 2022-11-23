@@ -1,8 +1,20 @@
+close;
+clear;
+
 input = imread("Noisy_dataset/noise2.png");
 Inoise = im2double(input);
+I_hsv = rgb2hsv(input);
+
+hueval = 10*mean(mean(I_hsv(:,:,1))); 
+scaleval = 10*mean(mean(I_hsv(:,:,2)));
+valval = 10*mean(mean(I_hsv(:,:,3))); % extracting hsv features of the image for it to act as a unique image signature
+
+fprintf("Hue : %d | Scale : %d | Value : %d",hueval,scaleval,valval);
+
 output_avg = Avgfilter(Inoise,5,3);
 output_med = Medianfilter(Inoise,3,3,5);
 output_gaus = Gaussianfilter(Inoise,0.7);
+
 figure;
 subplot(2,2,1)
 imshow(Inoise);
