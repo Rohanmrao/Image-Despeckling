@@ -5,10 +5,11 @@ Storage =dir(fullfile("C:","Users","Rohan Mahesh Rao","Desktop","DIP_project","N
 fprintf("No.of images in the clean set: %d",numel(Storage));
 
 for k = 1: numel(Storage)
-    Files = fullfile(Clean_set,Storage(k).name);
+    Files = fullfile(Noisy_set,Storage(k).name);
     Input = imread(Files);
     Storage(k).data = Input;
 end
+
 for j = 1:length(Storage)
     ImageData = Storage(j).data;
 
@@ -27,8 +28,7 @@ for j = 1:length(Storage)
     Aval = mean(mean(I_lab(:,:,2)));
     Bval = mean(mean(I_lab(:,:,3))); %extracting LAB features
 
-
-    filename = 'C:\Users\Rohan Mahesh Rao\Desktop\DIP_project\temp_hsv.xlsx';
-    writecell(C,filename,'Sheet','Temperatures','Range','B2');
+    towrite = {j,hueval,scaleval,valval,Lval,Aval,Bval,snr_val};
+    writecell(towrite,'towrite.xlsx','WriteMode','append');
 
 end 

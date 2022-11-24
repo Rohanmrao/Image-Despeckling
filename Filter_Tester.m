@@ -5,9 +5,9 @@ input = imread("Noisy_dataset/noise3.png");
 Inoise = im2double(input);
 I_hsv = rgb2hsv(input);
 
-hueval = 10*mean(mean(I_hsv(:,:,1))); 
-scaleval = 10*mean(mean(I_hsv(:,:,2)));
-valval = 10*mean(mean(I_hsv(:,:,3))); % extracting hsv features of the image for it to act as a unique image signature
+hueval = uint8(10*mean(mean(I_hsv(:,:,1)))); 
+scaleval = uint8(10*mean(mean(I_hsv(:,:,2))));
+valval = uint8(10*mean(mean(I_hsv(:,:,3)))); % extracting hsv features of the image for it to act as a unique image signature
 
 imax = max(Inoise(:));
 imin = min(Inoise(:));
@@ -33,6 +33,11 @@ title("Lee Filter");
 subplot(1,2,2);
 imshow(Inoise);
 title("Noisy Image");
+
+filename = 'C:\Users\Rohan Mahesh Rao\Desktop\DIP_project\temp_hsv.xlsx';
+
+towrite = {hueval,scaleval,valval,Lval,Aval,Bval,snr_val};
+writecell(towrite); type 'towrite.txt'
 
 function lee_output = Leefilter(img,window_size)
 
