@@ -6,29 +6,26 @@ fprintf("No.of images in the clean set: %d",numel(Storage));
 
 for k = 1: numel(Storage)
     Files = fullfile(Noisy_set,Storage(k).name);
-    Input = imread(Files);
-    Storage(k).data = Input;
+    input = imread(Files);
+    Storage(k).data = input;
 end
 
 for j = 1:length(Storage)
     ImageData = Storage(j).data;
 
+    r = mean(mean(input(:,:,1)));
+    g = mean(mean(input(:,:,2)));
+    b = mean(mean(input(:,:,3)));
+
     I_hsv = rgb2hsv(ImageData);
     hueval = 10*mean(mean(I_hsv(:,:,1))); 
     scaleval = 10*mean(mean(I_hsv(:,:,2)));
     valval = 10*mean(mean(I_hsv(:,:,3))); % extracting hsv features of the image for it to act as a unique image signature
-
-    imax = max(Inoise(:));
-    imin = min(Inoise(:));
-    ims = std(Inoise(:));
-    snr_val = log((imax - imin) ./ ims); % extracting snr and scaling it down by ten 
     
     I_lab = rgb2lab(input);
-    Lval = mean(mean(I_lab(:,:,1)));
-    Aval = mean(mean(I_lab(:,:,2)));
-    Bval = mean(mean(I_lab(:,:,3))); %extracting LAB features
+    Lval = mean(mean(I_lab(:,:,1))); %extracting Lightness
 
-    towrite = {j,hueval,scaleval,valval,Lval,Aval,Bval,snr_val};
+    towrite = {j,hueval,scaleval,valval,Lval,r,g,b};
     writecell(towrite,'towrite.xlsx','WriteMode','append');
 
 end 
