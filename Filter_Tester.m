@@ -1,43 +1,28 @@
 close;
 clear;
 
-input = imread("Noisy_dataset/noise3.png");
+input = imread("Noisy_dataset/noise164.png");
 Inoise = im2double(input);
-I_hsv = rgb2hsv(input);
 
-hueval = uint8(10*mean(mean(I_hsv(:,:,1)))); 
-scaleval = uint8(10*mean(mean(I_hsv(:,:,2))));
-valval = uint8(10*mean(mean(I_hsv(:,:,3)))); % extracting hsv features of the image for it to act as a unique image signature
-
-imax = max(Inoise(:));
-imin = min(Inoise(:));
-ims = std(Inoise(:));
-snr_val = log((imax - imin) ./ ims); % extracting snr and scaling it down by ten 
-
-I_lab = rgb2lab(input);
-Lval = mean(mean(I_lab(:,:,1)));
-Aval = mean(mean(I_lab(:,:,2)));
-Bval = mean(mean(I_lab(:,:,2)));
-
-
-fprintf("SNR value : %d\n",snr_val);
-fprintf("Hue : %d | Scale : %d | Value : %d\n",hueval,scaleval,valval);
-fprintf("L : %d | A : %d | B : %d\n",Lval,Aval,Bval);
-
-output_lee = Leefilter(Inoise,4);
+output_lee_2 = Leefilter(Inoise,2);
+output_lee_3 = Leefilter(Inoise,3);
+output_lee_4 = Leefilter(Inoise,4);
+output_lee_5 = Leefilter(Inoise,5);
+output_lee_6 = Leefilter(Inoise,6);
 
 figure;
-subplot(1,2,1)
-imshow(output_lee);
-title("Lee Filter");
-subplot(1,2,2);
+subplot(2,2,1)
+imshow(output_lee_3);
+title("Lee 3 Filter");
+subplot(2,2,2)
+imshow(output_lee_4);
+title("Lee 4 Filter");
+subplot(2,2,3)
+imshow(output_lee_5);
+title("Lee 5 Filter");
+subplot(2,2,4);
 imshow(Inoise);
 title("Noisy Image");
-
-filename = 'C:\Users\Rohan Mahesh Rao\Desktop\DIP_project\temp_hsv.xlsx';
-
-towrite = {hueval,scaleval,valval,Lval,Aval,Bval,snr_val};
-writecell(towrite); type 'towrite.txt'
 
 function lee_output = Leefilter(img,window_size)
 
