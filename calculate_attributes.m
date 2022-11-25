@@ -13,19 +13,20 @@ end
 for j = 1:length(Storage)
     ImageData = Storage(j).data;
 
-    r = mean(mean(input(:,:,1)));
-    g = mean(mean(input(:,:,2)));
-    b = mean(mean(input(:,:,3)));
-
     I_hsv = rgb2hsv(ImageData);
     hueval = 10*mean(mean(I_hsv(:,:,1))); 
     scaleval = 10*mean(mean(I_hsv(:,:,2)));
     valval = 10*mean(mean(I_hsv(:,:,3))); % extracting hsv features of the image for it to act as a unique image signature
-    
-    I_lab = rgb2lab(input);
-    Lval = mean(mean(I_lab(:,:,1))); %extracting Lightness
 
-    towrite = {j,hueval,scaleval,valval,Lval,r,g,b};
+    hueval = round(hueval,1);
+    scaleval = round(scaleval,1);
+    valval = round(valval,1);
+
+    hueval = uint8(hueval);
+    scaleval = uint8(scaleval);
+    valval = uint8(valval);
+    
+    towrite = {j,hueval,scaleval,valval};
     writecell(towrite,'towrite.xlsx','WriteMode','append');
 
 end 
