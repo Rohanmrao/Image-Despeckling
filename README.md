@@ -1,5 +1,5 @@
-# SAR-Image-Despeckling (DIP (UE20EC317) project)
-Predicting the appropriate kernel size(Lee filter) for a given speckled SAR image based on it's HSV values, using kernel ridge regression.
+# ML assisted de-speckling of SAR images (DIP (UE20EC317) project)
+Predicting the appropriate kernel size(Lee filter) for a given speckled SAR image based on it's HSV values, using decision tree regression.
 
 Post-processing using unsharp masking has also been implemented. 
 
