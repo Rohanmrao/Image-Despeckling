@@ -1,6 +1,6 @@
 % MATLAB DIP PROJECT - 
-% Creating a model to remove speckling noise in a SAR image, using a
-% trained CNN
+% Creating a model to remove speckling noise in a SAR image, using a DT
+% regressorcd
 
 Noisy_set  = "C:\Users\Rohan Mahesh Rao\Desktop\DIP_project\Testset\speckled\";
 Clean_set =  "C:\Users\Rohan Mahesh Rao\Desktop\DIP_project\Testset\clean\";
