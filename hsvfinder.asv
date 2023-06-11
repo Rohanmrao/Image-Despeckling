@@ -1,0 +1,36 @@
+
+Noisy_set  = "C:\Users\Rohan Mahesh Rao\Desktop\DIP_project\Noisy_Dataset\";
+Clean_set =  "C:\Users\Rohan Mahesh Rao\Desktop\DIP_project\Dataset\";
+Storage =dir(fullfile("C:","Users","Rohan Mahesh Rao","Desktop","DIP_project","Noisy_Dataset","*.png"));
+fprintf("No.of images in the clean set: %d",numel(Storage));
+
+for k = 1: numel(Storage)
+    Files = fullfile(Clean_set,Storage(k).name);
+    Input = imread(Files);
+    Storage(k).data = Input;
+end
+for j = 1:length(Storage)
+    ImageData = Storage(j).data;
+
+    I_hsv = rgb2hsv(ImageData);
+    hueval = 10*mean(mean(I_hsv(:,:,1))); 
+    scaleval = 10*mean(mean(I_hsv(:,:,2)));
+    valval = 10*mean(mean(I_hsv(:,:,3))); % extracting hsv features of the image for it to act as a unique image signature
+
+    %save images in the right folder
+    % add the new values (your input) to the end of Excel file
+
+    % Check if you have created an Excel file previously or not 
+    checkforfile=exist(strcat(pwd,'\','temp_hsv.xls'),'file');
+    if checkforfile==0; % if not create new one
+        header = {'hval', 'scaleval' 'valval'};
+        xlswrite('temp_hsv',header,'Sheetname','A1');
+        N=0;
+    else % if yes, count the number of previous inputs
+        N=size(xlsread('temp_hsv','Sheetname'),1);
+    end
+    AA=strcat('A',num2str(N+2));
+    BB=strcat('B',num2str(N+2));
+    xlswrite('ExcelFile',NewName,'Sheetname',AA);
+    xlswrite('ExcelFile',NewValues,'Sheetname',BB);
+end 

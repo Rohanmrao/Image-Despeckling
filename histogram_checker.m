@@ -67,6 +67,5 @@ function post_out = postpr(a)
     c =imsharpen(meanfilt,'Radius',3,'Amount',3);
     post_out = imfilter(c,mf);
 end
-cd 
 
 %Lee filter histogram resembles that of the unspeckled image the most

@@ -2,7 +2,7 @@
 % Creating a model to remove speckling noise in a SAR image, using a DT
 % regressorcd
 
-Noisy_set  = "C:\Users\Rohan Mahesh Rao\Desktop\DIP_project\Testset\speckled\";
+Noisy_set  = "C:\Users\Rohan Mahesh Rao\Desktop\DIP_project\SSIM_testing";
 Clean_set =  "C:\Users\Rohan Mahesh Rao\Desktop\DIP_project\Testset\clean\";
 Storage =dir(fullfile("C:","Users","Rohan Mahesh Rao","Desktop","DIP_project","Testset","clean","*.png"));
 fprintf("No.of images in the clean set: %d",numel(Storage));

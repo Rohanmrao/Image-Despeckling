@@ -10,6 +10,9 @@ output_lee_4 = Leefilter(Inoise,4);
 output_lee_5 = Leefilter(Inoise,5);
 output_lee_6 = Leefilter(Inoise,6);
 
+% printing structural similarity too 
+
+
 figure;
 subplot(2,2,1)
 imshow(output_lee_3);
