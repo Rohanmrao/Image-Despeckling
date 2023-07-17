@@ -5,30 +5,15 @@ clear;
 Storage_clean =dir(fullfile("C:","Users","Rohan Mahesh Rao","Desktop","DIP_project","New_images","clean","*.bmp"));
 storage_noise = dir(fullfile("C:","Eng","Image-Despeckling","Noisy_Dataset_train","*.png"));
 
-%filename = 'Specklefilter_Data_actual.xlsx';
-%data = xlsread(filename,"E2:E551");
+filename = 'Specklefilter_Data_actual.xlsx';
+data = xlsread(filename,"E2:E551");
 
-% I = imread("D:\Eng\Image-Despeckling\Dataset_train\clean8.png");
-% clean = im2double(im2gray(I));
-% input = imread("D:\Eng\Image-Despeckling\Noisy_Dataset_train\noise8.png");
-% Inoise = im2double(input);
-% Igray= im2gray(Inoise);
+I = imread("C:\Users\Rohan Mahesh Rao\Desktop\Dip\Image-Despeckling\New_images\clean_rename\");
+clean = im2double(im2gray(I));
+input = imread("D:\Eng\Image-Despeckling\Noisy_Dataset_train\noise8.png");
+Inoise = im2double(input);
+Igray= im2gray(Inoise);
 
-lee_2 = Leefilter(I_noisy,2);
-lee_3 = Leefilter(I_noisy,3);
-lee_4 = Leefilter(I_noisy,4);
-lee_5 = Leefilter(I_noisy,5);
-lee_6 = Leefilter(I_noisy,6);
-lee_7 = Leefilter(I_noisy,7);
-lee_8 = Leefilter(I_noisy,8);
-
-output_lee_2 = postpr(lee_2);
-output_lee_3 = postpr(lee_3);
-output_lee_4 = postpr(lee_4);
-output_lee_5 = postpr(lee_5);
-output_lee_6 = postpr(lee_6);
-output_lee_7 = postpr(lee_7);
-output_lee_8 = postpr(lee_8);
 
 [ssimval1,ssimmap1] = ssim(output_lee_2,I_clean);
 [ssimval2,ssimmap2] = ssim(output_lee_3,I_clean);
