@@ -1,7 +1,4 @@
-
-Noisy_set  = "C:\Users\Rohan Mahesh Rao\Desktop\DIP_project\Noisy_Dataset\";
-Clean_set =  "C:\Users\Rohan Mahesh Rao\Desktop\DIP_project\Dataset\";
-Storage =dir(fullfile("C:","Users","Rohan Mahesh Rao","Desktop","DIP_project","Noisy_Dataset","*.png"));
+Storage =dir(fullfile("C:","Users","Rohan Mahesh Rao","Desktop","Dip","New_images","noisy","*.png"));
 fprintf("No.of images in the clean set: %d",numel(Storage));
 
 for k = 1: numel(Storage)
