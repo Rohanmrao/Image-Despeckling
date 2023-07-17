@@ -1,5 +1,7 @@
-Storage =dir(fullfile("C:","Users","Rohan Mahesh Rao","Desktop","Dip","New_images","noisy","*.png"));
-fprintf("No.of images in the clean set: %d",numel(Storage));
+Noisy_set  = "C:\Users\Rohan Mahesh Rao\Desktop\Dip\Image-Despeckling\New_images\noisy\";
+Clean_set =  "C:\Users\Rohan Mahesh Rao\Desktop\Dip\Image-Despeckling\New_images\clean\";
+Storage =dir(fullfile("C:","Users","Rohan Mahesh Rao","Desktop","Dip","Image-Despeckling","New_images","noisy","*.png"));
+fprintf("No.of images in the clean set: %d\n",numel(Storage));
 
 for k = 1: numel(Storage)
     Files = fullfile(Noisy_set,Storage(k).name);
