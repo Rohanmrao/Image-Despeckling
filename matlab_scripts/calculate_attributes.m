@@ -24,8 +24,10 @@ for j = 1:length(Storage)
     hueval = uint8(hueval);
     scaleval = uint8(scaleval);
     valval = uint8(valval);
+
+    contrast = round(std2(ImageData));
     
-    towrite = {j,hueval,scaleval,valval};
-    writecell(towrite,'towrite.xlsx','WriteMode','append');
+    towrite = {j,hueval,scaleval,valval,contrast};
+    writecell(towrite,'contvals.xlsx','WriteMode','append');
 
 end 
